@@ -12,7 +12,7 @@ This repo contains:
 
  * Server:
    * ASP.NET Core 1.1.0 Mvc and Web Api
-   * Entity Framework Core 1.0.1 for Data Access ([example](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro))
+   * Entity Framework Core 1.1.0 for Data Access ([example](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro))
    * [ASP.NET Web API Help Pages using Swagger](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger)
    * Webpack dev middleware ([docs](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices#webpack-dev-middleware))
    * Hot module replacement (HMR) ([docs](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices#webpack-hot-module-replacement))
