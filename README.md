@@ -16,7 +16,7 @@ This repo contains:
    * [ASP.NET Web API Help Pages using Swagger](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger)
    * Webpack dev middleware ([docs](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices#webpack-dev-middleware))
    * Hot module replacement (HMR) ([docs](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices#webpack-hot-module-replacement))
-   * Web Api Secured by Azure AD ([example](https://contos.io/protecting-a-net-core-api-with-azure-active-directory-59bbcd5b3429))
+   * Web Api Secured by Azure AD ([example 1](https://github.com/azure-samples/active-directory-dotnet-webapi-getting-started) [example 2](https://contos.io/protecting-a-net-core-api-with-azure-active-directory-59bbcd5b3429))
  * Client:
    * vuejs 2.0
    * vue-router 2.1.*
