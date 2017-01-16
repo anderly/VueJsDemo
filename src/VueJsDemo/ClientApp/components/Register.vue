@@ -1,5 +1,7 @@
 ﻿<template>
     <div>
+        <h1>Register</h1>
+
         <div class="alert alert-danger" v-if="error && !success">
             <p>There was an error, unable to complete registration.</p>
         </div>
