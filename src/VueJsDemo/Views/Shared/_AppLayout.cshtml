@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js Demo</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+    @RenderBody()
+    <environment names="Development">
+        <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.13/js/adal.min.js"></script>
+        <script src="~/dist/app.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/dist/app.min.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>
