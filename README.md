@@ -12,11 +12,11 @@ This repo contains:
 
  * Server:
    * ASP.NET Core 1.1.0 Mvc and Web Api
-   * Entity Framework Core 1.0.1
-   * Swashbuckle 6.0.* for Swagger API Documentation and UI
+   * Entity Framework Core 1.0.1 for Data Access ([example](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro))
+   * [ASP.NET Web API Help Pages using Swagger](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger)
    * Webpack dev middleware ([docs](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices#webpack-dev-middleware))
    * Hot module replacement (HMR) ([docs](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices#webpack-hot-module-replacement))
-   * Web Api Secured by Azure AD
+   * Web Api Secured by Azure AD ([example](https://contos.io/protecting-a-net-core-api-with-azure-active-directory-59bbcd5b3429))
  * Client:
    * vuejs 2.0
    * vue-router 2.1.*
