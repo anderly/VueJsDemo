@@ -1,10 +1,11 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace VueJsDemo.Api.Migrations
+namespace VueJsDemo.Migrations
 {
-    public partial class init : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,13 +15,13 @@ namespace VueJsDemo.Api.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Company = table.Column<string>(nullable: true, maxLength: 255),
+                    Company = table.Column<string>(maxLength: 255, nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(nullable: true, maxLength: 255),
-                    FirstName = table.Column<string>(nullable: true, maxLength: 255),
-                    JobTitle = table.Column<string>(nullable: true, maxLength: 255),
-                    LastName = table.Column<string>(nullable: true, maxLength: 255),
-                    MobilePhone = table.Column<string>(nullable: true, maxLength: 255)
+                    Email = table.Column<string>(maxLength: 255, nullable: true),
+                    FirstName = table.Column<string>(maxLength: 255, nullable: true),
+                    JobTitle = table.Column<string>(maxLength: 255, nullable: true),
+                    LastName = table.Column<string>(maxLength: 255, nullable: true),
+                    MobilePhone = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
