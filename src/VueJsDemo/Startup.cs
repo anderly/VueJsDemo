@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -12,7 +13,9 @@ using Newtonsoft.Json.Serialization;
 using VueJsDemo.Api.Contexts;
 using VueJsDemo.Api.Repository;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json;
+using Swashbuckle.Swagger.Model;
 using VueJsDemo.Api.Infrastructure;
 
 namespace VueJsDemo
@@ -58,6 +61,27 @@ namespace VueJsDemo
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
+
+            // Add the detail information for the API.
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Contacts API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Adam Anderly", Email = "adam.anderly@saintsystems.com", Url = "http://www.saintsystems.com" },
+                    License = new License { Name = "Use under LICX", Url = "http://url.com" }
+                });
+
+                //Determine base path for the application.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+
+                //Set the comments path for the swagger json and ui.
+                var xmlPath = Path.Combine(basePath, "VueJsDemo.xml");
+                options.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
