@@ -12,6 +12,7 @@ import auth from './auth';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+Vue.config.debug = true;
 Vue.config.devtools = true;
 
 //Vue.http.headers.common['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].getAttribute('content');
