@@ -9,68 +9,54 @@ namespace VueJsDemo.Api.Repository
 {
     public class ContactsRepository : IContactsRepository
     {
-        ContactsContext _context;
-        public ContactsRepository(ContactsContext context)
+        AppDbContext _dbContext;
+
+        public ContactsRepository(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
         static List<Contact> ContactsList = new List<Contact>();
 
         public async Task AddAsync(Contact item)
         {
             //ContactsList.Add(item);
-            _context.Contacts.Add(item);
-            await _context.SaveChangesAsync();
+            _dbContext.Contacts.Add(item);
+            await _dbContext.SaveChangesAsync();
         }
-
-        public bool CheckValidUserKey(string reqkey)
-        {
-            var userkeyList = new List<string>();
-            userkeyList.Add("28236d8ec201df516d0f6472d516d72d");
-            userkeyList.Add("38236d8ec201df516d0f6472d516d72c");
-            userkeyList.Add("48236d8ec201df516d0f6472d516d72b");
-
-            if (userkeyList.Contains(reqkey))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public async Task<Contact> FindAsync(string key)
+        public async Task<Contact> GetByIdAsync(string key)
         {
             // ToDo - Integrate with EF Core, DbSet.Find not available yet
             //return ContactsList
             //    .Where(e => e.MobilePhone.Equals(key))
             //    .SingleOrDefault();
-            return await _context.Contacts
+            return await _dbContext.Contacts
                 .SingleOrDefaultAsync(c => c.MobilePhone.Equals(key));
         }
 
-        public async Task<IEnumerable<Contact>> GetAllAsync()
+        public async Task<IEnumerable<Contact>> ListAsync()
         {
             //ContactsList.Add(new Contacts() {FirstName ="Mithun", MobilePhone = "2345" });
 
-            return await _context.Contacts.ToListAsync();
+            return await _dbContext.Contacts.ToListAsync();
         }
 
-        public async Task RemoveAsync(string Id)
+        public async Task DeleteAsync(string Id)
         {
             // ToDo - Integrate with EF Core
             //var itemToRemove = ContactsList.SingleOrDefault(r => r.MobilePhone == Id);
             //if (itemToRemove != null)
                 //ContactsList.Remove(itemToRemove);
-            var itemToRemove = _context.Contacts.SingleOrDefault(c => c.MobilePhone.Equals(Id));
+            var itemToRemove = _dbContext.Contacts.SingleOrDefault(c => c.MobilePhone.Equals(Id));
             if (itemToRemove != null)
             {
-                _context.Contacts.Remove(itemToRemove);
-                await _context.SaveChangesAsync();
+                _dbContext.Contacts.Remove(itemToRemove);
+                await _dbContext.SaveChangesAsync();
             }
         }
 
         public async Task UpdateAsync(Contact item)
         {
-            var itemToUpdate = _context.Contacts.SingleOrDefault(c => c.MobilePhone.Equals(item.MobilePhone));
+            var itemToUpdate = _dbContext.Contacts.SingleOrDefault(c => c.MobilePhone.Equals(item.MobilePhone));
             //await TryUpdate
             if (itemToUpdate != null)
             {

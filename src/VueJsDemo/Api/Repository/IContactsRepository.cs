@@ -7,11 +7,9 @@ namespace VueJsDemo.Api.Repository
     public interface IContactsRepository
     {
         Task AddAsync(Contact item);
-        Task<IEnumerable<Contact>> GetAllAsync();
-        Task<Contact> FindAsync(string key);
-        Task RemoveAsync(string Id);
+        Task<IEnumerable<Contact>> ListAsync();
+        Task<Contact> GetByIdAsync(string key);
         Task UpdateAsync(Contact item);
-
-        bool CheckValidUserKey(string reqkey);
+        Task DeleteAsync(string Id);
     }
 }
