@@ -8,8 +8,8 @@ using VueJsDemo.Api.Repository;
 
 namespace VueJsDemo.Api.Controllers
 {
-    [Authorize]
-    [ValidateModel]
+    //[Authorize]
+    [ValidatesModel]
     [Route("api/[controller]")]
     public class ContactsController : Controller
     {
@@ -27,6 +27,7 @@ namespace VueJsDemo.Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetContacts")]
+        [ValidateContactExists]
         public async Task<IActionResult> Get(string id)
         {
             return Ok(await _contactsRepository.GetByIdAsync(id));

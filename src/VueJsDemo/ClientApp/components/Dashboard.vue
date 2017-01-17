@@ -72,12 +72,13 @@
             event.preventDefault()
             // HTTP POST /api/contacts
             this.$http.post('api/contacts', this.form).then(response => {
+                self.error = false;
                 self.getContacts();
                 self.form = { firstName: '', lastName: '', email: '', mobilePhone: '' };
             }, response => {
                 console.log(response);
                 self.error = true;
-                self.errors.push(response.body);
+                self.errors = response.body.errors;
             });
         },
         getContacts() {

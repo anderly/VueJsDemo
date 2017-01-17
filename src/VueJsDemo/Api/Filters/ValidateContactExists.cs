@@ -6,17 +6,21 @@ using VueJsDemo.Api.Repository;
 
 namespace VueJsDemo.Api.Filters
 {
+    /// <summary>
+    /// Validates the contact record exists first prior to proceeding.
+    /// Used on GET, PUT and DELETE requests to make sure the record exists when we try to read, update or delete it.
+    /// </summary>
     public class ValidateContactExistsAttribute : TypeFilterAttribute
     {
-        public ValidateContactExistsAttribute() : base(typeof(ValidateContactExistsAttribute))
+        public ValidateContactExistsAttribute() : base(typeof(ValidateContactExistsFilterImpl))
         {
         }
 
-        private class ValidateAuthorExistsFilterImpl : IAsyncActionFilter
+        private class ValidateContactExistsFilterImpl : IAsyncActionFilter
         {
             private readonly IContactsRepository _contactsRepository;
 
-            public ValidateAuthorExistsFilterImpl(IContactsRepository contactsRepository)
+            public ValidateContactExistsFilterImpl(IContactsRepository contactsRepository)
             {
                 _contactsRepository = contactsRepository;
             }
