@@ -35,6 +35,7 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,7 @@
                     <td>{{ contact.lastName }}</td>
                     <td>{{ contact.email }}</td>
                     <td>{{ contact.mobilePhone }}</td>
+                    <td><a href="javascript:void(0)" @click="deleteContact(contact)">Delete</a></td>
                 </tr>
             </tbody>
         </table>
@@ -50,13 +52,15 @@
 </template>
 
 <script>
+    import auth from '../auth';
+
     export default {
         data() {
             return {
                 form: {
-                    firstName: '',
-                    lastName: '',
-                    email: '',
+                    firstName: auth.user.profile.name.split(' ')[0],
+                    lastName: auth.user.profile.name.split(' ')[1],
+                    email: auth.user.profile.upn,
                     mobilePhone: ''
 
                 },
@@ -72,9 +76,27 @@
             event.preventDefault()
             // HTTP POST /api/contacts
             this.$http.post('api/contacts', this.form).then(response => {
-                self.error = false;
+                self.reset();
                 self.getContacts();
-                self.form = { firstName: '', lastName: '', email: '', mobilePhone: '' };
+            }, response => {
+                console.log(response);
+                self.error = true;
+                self.errors = response.body.errors;
+            });
+        },
+        deleteContact(contact) {
+            var self = this;
+            this.resetErrors();
+            if (auth.user.profile.upn !== contact.email) {
+                self.error = true;
+                self.errors = [
+                    { message: "You can only delete contacts matching your email address (" + auth.user.profile.upn + ')' }
+                ];
+                return;
+            }
+            this.$http.delete('api/contacts/' + contact.mobilePhone, this.form).then(response => {
+                self.reset();
+                self.getContacts();
             }, response => {
                 console.log(response);
                 self.error = true;
@@ -85,6 +107,18 @@
             this.$http.get('api/contacts').then(response => {
                 this.contacts = response.body;
             });
+        },
+        reset() {
+            this.resetErrors();
+            this.resetForm();
+           
+        },
+        resetErrors() {
+            this.error = false;
+            this.errors = [];
+        },
+        resetForm() {
+            this.form = { firstName: '', lastName: '', email: '', mobilePhone: '' };
         }
     },
         created() {

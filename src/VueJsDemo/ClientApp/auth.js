@@ -3,7 +3,7 @@
 // Enter Global Config Values & Instantiate ADAL AuthenticationContext
 var authConfig = {
     instance: 'https://login.microsoftonline.com/',
-    tenant: '1a2cd35e-5a38-49db-a88f-ba3c4c8b52fd', //COMMON OR YOUR TENANT ID
+    tenant: 'common', //'1a2cd35e-5a38-49db-a88f-ba3c4c8b52fd', //COMMON OR YOUR TENANT ID
 
     clientId: 'd77422a5-4646-4379-8f66-3dd471e586c7', //REPLACE WITH YOUR CLIENT ID
     redirectUri: 'http://localhost:5000/', //REPLACE WITH YOUR REDIRECT URL

@@ -11,7 +11,7 @@ namespace VueJsDemo.Api.Controllers
     /// <summary>
     /// ContactsController
     /// </summary>
-    //[Authorize]
+    [Authorize]
     [ValidatesModel]
     [Route("api/[controller]")]
     public class ContactsController : Controller

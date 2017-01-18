@@ -17,6 +17,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json;
 using Swashbuckle.Swagger.Model;
 using VueJsDemo.Api.Infrastructure;
+using Microsoft.IdentityModel.Tokens;
 
 namespace VueJsDemo
 {
@@ -152,7 +153,10 @@ namespace VueJsDemo
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 Authority = Configuration["Authentication:AzureAd:AADInstance"] + Configuration["Authentication:AzureAd:TenantId"],
-                Audience = Configuration["Authentication:AzureAd:Audience"]
+                Audience = Configuration["Authentication:AzureAd:Audience"],
+
+                //additional code for Multi-tenancy
+                TokenValidationParameters = new TokenValidationParameters() { ValidateIssuer = false }
             });
 
             app.UseMvc(routes =>
